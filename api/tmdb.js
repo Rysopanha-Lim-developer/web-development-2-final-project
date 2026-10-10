@@ -1,56 +1,107 @@
-const API_KEY = "691d41eb3434da38d0a673295d90145b"
-const BEARER_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OTFkNDFlYjM0MzRkYTM4ZDBhNjczMjk1ZDkwMTQ1YiIsIm5iZiI6MTc4OTIxNjQzMC43MzIsInN1YiI6IjZhYTU0NmFlMjYwY2Q0MjVjZjc0YTNiMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.d-uSkpE_74aXjGVQ6ebMNFA-5XX8mZ9gTBMRD2dP-i0"
+const TMDB_KEY = "691d41eb3434da38d0a673295d90145b"; 
+const API = "https://api.themoviedb.org/3";
+const IMG = "https://image.tmdb.org/t/p";
+const state = { list: "trending/movie/week", genre: null, movies: [] };
+const elementSelection = (id) => document.getElementById(id);
+const BLOCKED_GENRES = [99];//this is the id of documentation genres that we do not what to display
 
 
-/**
- * Option 1: Fetch using Bearer token
- */
-async function fetchSpiderManWithBearerToken() {
-  const query = encodeURIComponent("Spider-Man: Brand New Day");
-  const url = `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`;
+async function tmdb(path, params = {}) {
+  const url = new URL(`${API}/${path}`);
+  console.log(url)
+  url.search = new URLSearchParams({ api_key: TMDB_KEY, language: "en-US", ...params });
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`TMDB error ${res.status}`);
+  return res.json();
+}
 
-  try {
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${BEARER_TOKEN}`
-      }
+function renderHero(movie) {
+  if (!movie) return;
+  elementSelection("hero").style.backgroundImage = `url(${IMG}/original${movie.backdrop_path})`;
+  elementSelection("hero-title").textContent = movie.title;
+  elementSelection("hero-rating").textContent = movie.vote_average.toFixed(1);
+  elementSelection("hero-year").textContent = (movie.release_date || "").slice(0, 4);
+  elementSelection("hero-overview").textContent = movie.overview;
+  elementSelection("hero-book").onclick = () => bookMovie(movie);
+}
+
+function renderRow(movies) {
+    elementSelection("row").replaceChildren(); 
+    elementSelection("status").textContent = movies.length ? "" : "No movies found. Try another genre.";
+
+    movies.filter((m) => m.poster_path).forEach((m) => {
+      const card = document.createElement("button");
+      card.className = "card";
+
+      const img = document.createElement("img");
+      img.src = `${IMG}/w342${m.poster_path}`;
+      img.alt = `${m.title} poster`;
+      img.loading = "lazy";
+
+      const title = document.createElement("span");
+      title.textContent = m.title;
+
+      card.append(img, title);
+      card.onclick = () => {
+        renderHero(m);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+
+      elementSelection("row").append(card);
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log("Results using Bearer Token:", data);
-    return data;
-  } catch (error) {
-    console.error("Fetch Error:", error);
-  }
 }
 
-/**
- * Option 2: Fetch using v3 API Key (Query Parameter)
- */
-async function fetchSpiderManWithApiKey() {
-  const query = encodeURIComponent("batman");
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}&include_adult=false&language=en-US&page=1`;
+function renderChips(genres) {
+  elementSelection("chips").replaceChildren(); 
+  genres.filter((g) => !BLOCKED_GENRES.includes(g.id))
+        .forEach((g) => {
+          const chip = document.createElement("button");
+          chip.className = "chip";
+          chip.textContent = g.name;
 
+          chip.onclick = () => {
+            state.genre = state.genre === g.id ? null : g.id; // click again to clear
+            document.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+            if (state.genre) chip.classList.add("active");
+            loadMovies();
+          };
+
+          elementSelection("chips").append(chip);
+    });
+}
+
+// ---- Data loading ----
+async function loadMovies() {
+  elementSelection("status").textContent = "Loading…";
   try {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log("Results using API Key:", data);
-    return data;
-  } catch (error) {
-    console.error("Fetch Error:", error);
+    const data = state.genre
+      ? await tmdb("discover/movie", { with_genres: state.genre, sort_by: "popularity.desc" })
+      : await tmdb(state.list);
+    state.movies = data.results;
+    renderRow(state.movies);
+    if (!state.genre) renderHero(state.movies.find((m) => m.backdrop_path));
+  } catch (err) {
+    elementSelection("status").textContent = "Could not load movies. Check your API key and connection.";
+    console.error(err);
   }
 }
 
-// Execute one of the functions:
-fetchSpiderManWithBearerToken();
+elementSelection("tabs").addEventListener("click", (e) => {
+  const tab = e.target.closest(".tab");
+  if (!tab) return;
+  document.querySelectorAll(".tab").forEach((t) => t.classList.remove("active"));
+  tab.classList.add("active");
+  state.list = tab.dataset.list;
+  state.genre = null;
+  document.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+  loadMovies();
+});
+
+async function init() {
+  try {
+    const { genres } = await tmdb("genre/movie/list");
+    renderChips(genres);
+  } catch (err) { console.error(err); }
+  loadMovies();
+};
+init();

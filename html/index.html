@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Movie Explorer</title>
+</head>
+<body>
+    <header class="nav">
+        <a class="logo" href="#">CINEBOOK</a>
+        <nav>
+        <a class="active" href="#">Home</a>
+        <a href="#">Now showing</a>
+        <a href="#">My tickets</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="hero" aria-live="polite">
+        <div class="hero-info">
+        <p class="meta"><span class="rating" id="hero-rating"></span><span id="hero-year"></span></p>
+        <h1 id="hero-title">Loading…</h1>
+        <p id="hero-overview"></p>
+        <div class="actions">
+            <button class="btn primary" id="hero-book">Book tickets</button>
+            <button class="btn ghost" id="hero-save">Add to list</button>
+        </div>
+        </div>
+    </section>
+
+    <section class="tabs" id="tabs">
+        <button class="tab active" data-list="trending/movie/week">Trending</button>
+        <button class="tab" data-list="movie/popular">Popular</button>
+        <button class="tab" data-list="movie/now_playing">Now playing</button>
+        <button class="tab" data-list="movie/upcoming">Upcoming</button>
+    </section>
+
+    <section class="chips" id="chips" aria-label="Genres"></section>
+
+    <main class="row" id="row"></main>
+    <p class="status" id="status" role="status"></p>
+
+    <script type="module" src="/js/script.js"></script>
+    <script type="module" src="/api/tmdb.js"></script>
+</body>
+</html>
