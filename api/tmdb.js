@@ -1,4 +1,4 @@
-const TMDB_KEY = "691d41eb3434da38d0a673295d90145b"; 
+const TMDB_KEY = "9b6ce572fb03b0d30c462b4b89fff65c"; 
 const API = "https://api.themoviedb.org/3";
 const IMG = "https://image.tmdb.org/t/p";
 const state = { list: "trending/movie/week", genre: null, movies: [] };
@@ -15,7 +15,7 @@ async function tmdb(path, params = {}) {
   return res.json();
 }
 
-function renderHero(movie) {
+function renderHeroSection(movie) {
   if (!movie) return;
   elementSelection("hero").style.backgroundImage = `url(${IMG}/original${movie.backdrop_path})`;
   elementSelection("hero-title").textContent = movie.title;
@@ -25,7 +25,7 @@ function renderHero(movie) {
   elementSelection("hero-book").onclick = () => bookMovie(movie);
 }
 
-function renderRow(movies) {
+function renderMovieRow(movies) {
     elementSelection("row").replaceChildren(); 
     elementSelection("status").textContent = movies.length ? "" : "No movies found. Try another genre.";
 
@@ -43,7 +43,7 @@ function renderRow(movies) {
 
       card.append(img, title);
       card.onclick = () => {
-        renderHero(m);
+        renderHeroSection(m);
         window.scrollTo({ top: 0, behavior: "smooth" });
       };
 
@@ -78,8 +78,8 @@ async function loadMovies() {
       ? await tmdb("discover/movie", { with_genres: state.genre, sort_by: "popularity.desc" })
       : await tmdb(state.list);
     state.movies = data.results;
-    renderRow(state.movies);
-    if (!state.genre) renderHero(state.movies.find((m) => m.backdrop_path));
+    renderMovieRow(state.movies);
+    if (!state.genre) renderHeroSection(state.movies.find((m) => m.backdrop_path));
   } catch (err) {
     elementSelection("status").textContent = "Could not load movies. Check your API key and connection.";
     console.error(err);
@@ -97,11 +97,11 @@ elementSelection("tabs").addEventListener("click", (e) => {
   loadMovies();
 });
 
-async function init() {
+async function startDisplayMovie() {
   try {
     const { genres } = await tmdb("genre/movie/list");
     renderChips(genres);
   } catch (err) { console.error(err); }
   loadMovies();
 };
-init();
+startDisplayMovie();
