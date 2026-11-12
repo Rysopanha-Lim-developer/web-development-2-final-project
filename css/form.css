@@ -1,0 +1,88 @@
+body {
+	height: 100%;
+	margin: 0;
+	color: #f4f4f5;
+	font-family: sans-serif;
+	background:
+		radial-gradient(ellipse at 50% 42%, rgba(51, 61, 70, 0.45), transparent 55%),
+		linear-gradient(145deg, #11171c 0%, #080a0c 55%, #030303 100%);
+}
+
+.page {
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+	padding: 24px;
+}
+
+.glass-form {
+	width: min(100%, 390px);
+	padding: 36px;
+	color: #f4f4f5;
+	background: rgba(22, 25, 29, 0.72);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-top-color: rgba(255, 255, 255, 0.2);
+	border-radius: 18px;
+	backdrop-filter: blur(18px);
+	box-shadow:
+		0 28px 70px rgba(0, 0, 0, 0.65),
+		0 0 35px rgba(229, 0, 20, 0.12),
+		inset 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.glass-form h1 {
+	margin: 0 0 8px;	
+	font-size: 1.8rem;
+	letter-spacing: -0.03em;
+}
+
+.glass-form p {
+	margin: 0 0 28px;
+	color: #a5a7ab;
+}
+
+.glass-form label {
+	display: block;
+	margin: 16px 0 8px;
+	color: #d4d4d8;
+	font-size: 0.9rem;
+}
+
+.glass-form input {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 13px 14px;
+	color: #f4f4f5;
+	background: rgba(0, 0, 0, 0.38);
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	border-radius: 10px;
+	outline: none;
+}
+
+.glass-form input::placeholder {
+	color: #777a80;
+}
+
+.glass-form input:focus {
+	border-color: #ed0014;
+	box-shadow: 0 0 0 3px rgba(237, 0, 20, 0.16);
+}
+
+.glass-form button {
+	width: 100%;
+	margin-top: 24px;
+	padding: 14px;
+	color: #fff;
+	background: #ed0014;
+	border: 0;
+	border-radius: 999px;
+	font: inherit;
+	font-weight: 700;
+	cursor: pointer;
+	transition: background 160ms ease, transform 160ms ease;
+}
+
+.glass-form button:hover {
+	background: #c90012;
+	transform: translateY(-1px);
+}
