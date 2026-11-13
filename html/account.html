@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+    <link rel="stylesheet" href = "../css/account.css">
+</head>
+<body data-state="user`">
+    <main class="account">
+        <section class="user-side">
+            <div class="page-head">
+                <p class="title">Your Account</p>
+            </div>
+            <div class="layout">
+                <aside class="profile-card">
+                    <img src="../img/anonyuser.png" class="avatar" alt="Profile avatar">
+                    <div class="details">
+                        <div class="detail">
+                            <span class="label">Username</span>
+                            <p class="value" data-field="username">faker</p>
+                        </div>
+                        <div class="detail">
+                            <span class="label">Email</span>
+                            <p class="value" data-field="email">faker@example.com</p>
+                        </div>
+                        <div class="detail">
+                            <span class="label">Tickets booked</span>
+                            <p class="value" data-field="ticket-count">XX</p>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button type="button" class="btn btn-ghost" id="edit-profile">Edit profile</button>
+                        <button type="button" class="btn btn-text" id="signout">Sign out</button>
+                    </div>
+                </aside>
+                <div class="tickets">
+                    <h2 class="section-title">Upcoming</h2>
+                    <ul class="ticket-list">
+                        <li>
+                            <div class="empty">
+                                <p>No tickets yet.</p>
+                                <button type="button" class="btn btn-primary">Find something to watch</button>
+                            </div>
+                        </li>
+                    </ul>
+                    <h2 class="section-title section-title-pre">Watched</h2>
+                    <ul class="ticket-list">
+                        <li>
+                            <div class="empty">
+                                <p>No tickets yet.</p>
+                                <button type="button" class="btn btn-primary">Find something to watch</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="guest-side">
+            <div class="guest-layout">
+                <div class="guest-info">
+                    <p class="title">Browsing as guest</p>
+                    <h1>Your tickets live here <br> once you sign in.</h1>
+                    <div class="guest-actions">
+                        <button type="button" class="btn btn-primary">Sign in to your account</button>
+                        <p class="signup-line">
+                            New here? <a href="#register.html" class="link">Create a new account</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="guest-masterpiece">
+                    <div class="ghost-ticket ghost-ticket--1">
+                        <div class="ghost-poster"></div>
+                        <div class="ghost-lines"><i></i><i></i><i></i></div>
+                    </div>
+                    <div class="ghost-ticket ghost-ticket--2">
+                        <div class="ghost-poster"></div>
+                        <div class="ghost-lines"><i></i><i></i><i></i></div>
+                    </div>
+                    <div class="lock"><img src="../img/locked.png" alt=""></div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
