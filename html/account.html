@@ -6,7 +6,7 @@
     <title>My Account</title>
     <link rel="stylesheet" href = "../css/account.css">
 </head>
-<body data-state="user`">
+<body>
     <main class="account">
         <section class="user-side">
             <div class="page-head">
@@ -18,15 +18,15 @@
                     <div class="details">
                         <div class="detail">
                             <span class="label">Username</span>
-                            <p class="value" data-field="username">faker</p>
+                            <p class="value" id="username">faker</p>
                         </div>
                         <div class="detail">
                             <span class="label">Email</span>
-                            <p class="value" data-field="email">faker@example.com</p>
+                            <p class="value" id="email">faker@example.com</p>
                         </div>
                         <div class="detail">
                             <span class="label">Tickets booked</span>
-                            <p class="value" data-field="ticket-count">XX</p>
+                            <p class="value" id="ticket-count">XX</p>
                         </div>
                     </div>
                     <div class="profile-actions">
@@ -62,8 +62,10 @@
                     <p class="title">Browsing as guest</p>
                     <h1>Your tickets live here <br> once you sign in.</h1>
                     <div class="guest-actions">
-                        <a href="loginForm.html" class=" btn   btn-primary">Sign in to your account</button>
-                        <a href="registerForm.html" class="link">Create a new account</a>
+                        <button type="button" class="btn btn-primary">Sign in to your account</button>
+                        <p class="signup-line">
+                            New here? <a href="#register.html" class="link">Create a new account</a>
+                        </p>
                     </div>
                 </div>
                 <div class="guest-masterpiece">
@@ -80,5 +82,6 @@
             </div>
         </section>
     </main>
+    <script src="../js/account.js"></script>
 </body>
 </html>

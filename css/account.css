@@ -17,14 +17,14 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
-h1 { 
+h1 {
     font-size: 38px;
-    line-height: 1.15; 
-    letter-spacing: -0.01em; 
+    line-height: 1.15;
+    letter-spacing: -0.01em;
 }
-.account { max-width: 1100px; 
+.account { max-width: 1100px;
     margin: 0 auto;    
-    padding: 40px; 
+    padding: 40px;
 }
 .title {
     color: var(--red);
@@ -35,9 +35,6 @@ h1 {
     margin-bottom: 8px;
 }
 .page-head { margin-bottom: 36px; }
-.user-side { display: none; }
-body[data-state="user"] .user-side { display: block; }
-body[data-state="user"] .guest-side { display: none; }
 .btn {
     display: inline-block;
     padding: 12px 24px;
@@ -55,9 +52,9 @@ body[data-state="user"] .guest-side { display: none; }
 .btn-primary:hover { background: var(--red-dark); }
 .btn-ghost { background: #23272e; color: var(--text); }
 .btn-ghost:hover { background: #2d323a; }
-.btn-text { background: none; 
-    color: var(--muted); 
-    padding: 10px; 
+.btn-text { background: none;
+    color: var(--muted);
+    padding: 10px;
 }
 .btn-text:hover { color: var(--red); }
 .layout {
@@ -116,8 +113,8 @@ body[data-state="user"] .guest-side { display: none; }
 }
 .ticket--past { opacity: .55; }
 .ticket--past .poster { filter: grayscale(1); }
-.poster { min-height: 130px; 
-    background-size: cover; 
+.poster { min-height: 130px;
+    background-size: cover;
     background-position: center; }
 .ticket-main { padding: 18px 22px; }
 .ticket-main h3 { font-size: 19px; margin-bottom: 6px; }
@@ -198,11 +195,11 @@ body[data-state="user"] .guest-side { display: none; }
     justify-content: center;
     gap: 12px;
 }
-.ghost-lines i { 
-    display: block; 
-    height: 10px; 
-    border-radius: 6px; 
-    background: #252a32; 
+.ghost-lines i {
+    display: block;
+    height: 10px;
+    border-radius: 6px;
+    background: #252a32;
 }
 .ghost-lines i:nth-child(1) { width: 70%; height: 14px; }
 .ghost-lines i:nth-child(2) { width: 50%; }
@@ -220,7 +217,7 @@ body[data-state="user"] .guest-side { display: none; }
     background: var(--red);
     box-shadow: 0 0 0 8px rgba(236, 26, 26, .18), 0 20px 40px -10px rgba(236, 26, 26, .6);
 }
-.lock img { width: 30px; 
-    height: 30px; 
-    object-fit: contain; 
+.lock img { width: 30px;
+    height: 30px;
+    object-fit: contain;
 }
