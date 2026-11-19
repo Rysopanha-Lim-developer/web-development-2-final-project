@@ -1,4 +1,4 @@
-const TMDB_KEY = "9b6ce572fb03b0d30c462b4b89fff65c"; 
+const TMDB_KEY = "9b6ce572fb03b0d30c462b4b89fff65c";
 const API = "https://api.themoviedb.org/3";
 const IMG = "https://image.tmdb.org/t/p";
 const state = { list: "trending/movie/week", genre: null, movies: [] };
@@ -6,7 +6,7 @@ const elementSelection = (id) => document.getElementById(id);
 const BLOCKED_GENRES = [99];//this is the id of documentation genres that we do not what to display
 
 
-async function tmdb(path, params = {}) {
+const tmdb = async (path, params = {}) => {
   const url = new URL(`${API}/${path}`);
   console.log(url)
   url.search = new URLSearchParams({ api_key: TMDB_KEY, language: "en-US", ...params });
@@ -15,7 +15,7 @@ async function tmdb(path, params = {}) {
   return res.json();
 }
 
-function renderHeroSection(movie) {
+const renderHeroSection = (movie) => {
   if (!movie) return;
   elementSelection("hero").style.backgroundImage = `url(${IMG}/original${movie.backdrop_path})`;
   elementSelection("hero-title").textContent = movie.title;
@@ -25,8 +25,8 @@ function renderHeroSection(movie) {
   elementSelection("hero-book").onclick = () => bookMovie(movie);
 }
 
-function renderMovieRow(movies) {
-    elementSelection("row").replaceChildren(); 
+const renderMovieRow = (movies) => {
+    elementSelection("row").replaceChildren();
     elementSelection("status").textContent = movies.length ? "" : "No movies found. Try another genre.";
 
     movies.filter((m) => m.poster_path).forEach((m) => {
@@ -51,8 +51,8 @@ function renderMovieRow(movies) {
     });
 }
 
-function renderChips(genres) {
-  elementSelection("chips").replaceChildren(); 
+const renderChips = (genres) => {
+  elementSelection("chips").replaceChildren();
   genres.filter((g) => !BLOCKED_GENRES.includes(g.id))
         .forEach((g) => {
           const chip = document.createElement("button");
@@ -71,7 +71,7 @@ function renderChips(genres) {
 }
 
 // ---- Data loading ----
-async function loadMovies() {
+const loadMovies = async () => {
   elementSelection("status").textContent = "Loading…";
   try {
     const data = state.genre
@@ -97,7 +97,7 @@ elementSelection("tabs").addEventListener("click", (e) => {
   loadMovies();
 });
 
-async function startDisplayMovie() {
+const startDisplayMovie = async () => {
   try {
     const { genres } = await tmdb("genre/movie/list");
     renderChips(genres);
