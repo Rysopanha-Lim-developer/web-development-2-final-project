@@ -57,12 +57,82 @@
       "responseMode": null,
       "streamingMode": null,
       "streamingInterval": 0
+    },
+    {
+      "uuid": "cd5e5ba9-07ba-4d9d-a16d-98cb1cf1821b",
+      "type": "crud",
+      "documentation": "",
+      "method": "",
+      "endpoint": "watchlist",
+      "responses": [
+        {
+          "uuid": "53f87c79-0331-468c-a198-a46a5b876d42",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "ahca",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "056d70e4-7ca0-4739-a197-1375402c8799",
+      "type": "crud",
+      "documentation": "",
+      "method": "",
+      "endpoint": "bookings",
+      "responses": [
+        {
+          "uuid": "87cfc663-25a3-4ca2-99c6-77942aabce5e",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "4z3l",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
     }
   ],
   "rootChildren": [
     {
       "type": "route",
       "uuid": "17c32b8b-15c2-449c-b17f-54c3a627a3bb"
+    },
+    {
+      "type": "route",
+      "uuid": "cd5e5ba9-07ba-4d9d-a16d-98cb1cf1821b"
+    },
+    {
+      "type": "route",
+      "uuid": "056d70e4-7ca0-4739-a197-1375402c8799"
     }
   ],
   "proxyMode": false,
@@ -114,7 +184,21 @@
       "id": "w6i5",
       "name": "Users",
       "documentation": "",
-      "value": "[\n  {\n    \"id\": \"\";\n    \"username\": \"steve\";\n    \"email\": \"steve123@gmail.com\";\n    \"password\": \"IamSteve123\"\n  }\n]"
+      "value": "[]"
+    },
+    {
+      "uuid": "f1dd67b9-d484-477f-a475-91568489e27b",
+      "id": "ahca",
+      "name": "Watchlist",
+      "documentation": "",
+      "value": "[]"
+    },
+    {
+      "uuid": "c9c86e8d-2e23-4055-a731-ce4df2804cc7",
+      "id": "4z3l",
+      "name": "Bookings",
+      "documentation": "",
+      "value": "[]\n"
     }
   ],
   "callbacks": []

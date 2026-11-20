@@ -1,37 +1,42 @@
+
+import { apiRequest } from "./mockoon-api.js";
+
 const form = document.getElementById("glass-form");
 
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-const credientialValidation = async({username, email, password}) => {
-    let credientials;
-    try {
-        const res = await fetch("http://localhost:3000/api/users", {
-            method: "GET",
-        });
-        if (!res.ok) {
-            throw new Error("Could not load account data");
-        }
-        credientials = await res.json();
-    } catch (error) {
-        console.log(error.message)
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const password = document.getElementById("password").value;
+
+  try {
+    const users = await apiRequest(
+      `users?email_eq=${encodeURIComponent(email)}`
+    );
+
+    const user = users.find((item) =>
+      item.username === username &&
+      item.email.toLowerCase() === email &&
+      item.password === password
+    );
+
+    if (!user) {
+      alert("Incorrect username, email, or password.");
+      return;
     }
 
-    const success = await credientials.find(
-        user => user.username == username && user.email == email && user.password == password
-    )
+    // Remember the demo session, not the password
+    localStorage.setItem("account", JSON.stringify({
+      id: user.id,
+      username: user.username,
+      email: user.email
+    }));
 
-    if(success){
-        localStorage.setItem('account', JSON.stringify({ username: success.username, email: success.email }))
-    }
-    
-    console.log(success)
-}
+    window.location.href = "account.html";
 
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const username = form.username.value;
-    const email = form.email.value;
-    const password = form.password.value;
-
-    credientialValidation({username, email, password});
-})
+  } catch (error) {
+    console.error(error);
+    alert("Cannot connect to Mockoon. Check port 3001.");
+  }
+});
