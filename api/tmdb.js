@@ -15,7 +15,7 @@ const elementSelection = (id) => document.getElementById(id);
 const BLOCKED_GENRES = [99];//this is the id of documentation genres that we do not what to display
 
 
-async function tmdb(path, params = {}) {
+const tmdb = async (path, params = {}) => {
   const url = new URL(`${API}/${path}`);
   console.log(url)
   url.search = new URLSearchParams({ api_key: TMDB_KEY, language: "en-US", ...params });
@@ -196,7 +196,7 @@ function renderChips(genres) {
 }
 
 // ---- Data loading ----
-async function loadMovies() {
+const loadMovies = async () => {
   elementSelection("status").textContent = "Loading…";
   try {
     const data = state.genre
@@ -222,7 +222,7 @@ elementSelection("tabs").addEventListener("click", (e) => {
   loadMovies();
 });
 
-async function startDisplayMovie() {
+const startDisplayMovie = async () => {
   try {
     const { genres } = await tmdb("genre/movie/list");
     renderChips(genres);
