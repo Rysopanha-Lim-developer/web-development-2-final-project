@@ -2,7 +2,7 @@
 const BASE_URL = "http://localhost:3001/api";
 
 // Get the logged-in demo user
-export function getAccount() {
+export const getAccount = () => {
   try {
     const user = JSON.parse(localStorage.getItem("account"));
     return user?.id != null ? user : null;
@@ -12,7 +12,7 @@ export function getAccount() {
 }
 
 // Ask the visitor to log in if needed
-export function requireAccount() {
+export const requireAccount = () => {
   const user = getAccount();
 
   if (!user) {
@@ -25,7 +25,7 @@ export function requireAccount() {
 }
 
 // Reusable function for Mockoon requests
-export async function apiRequest(path, options = {}) {
+export const apiRequest =  async (path, options = {}) => {
   const response = await fetch(`${BASE_URL}/${path}`, {
     ...options,
     headers: {

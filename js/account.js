@@ -37,7 +37,7 @@ let selectedBooking = null;
 // NEW: Open Edit Booking Modal
 // ==============================
 
-function openEditBooking(record) {
+const openEditBooking = (record) => {
     selectedBooking = record;
 
     editMovieTitle.textContent = record.movieTitle;
@@ -74,7 +74,7 @@ function openEditBooking(record) {
 // NEW: Update Booking Using PUT
 // ==============================
 
-async function updateBooking(id, updatedData) {
+const updateBooking = async (id, updatedData) => {
     const response = await fetch(
         `${API}/bookings/${encodeURIComponent(id)}`,
         {
@@ -196,7 +196,7 @@ editModal.addEventListener("close", () => {
 // Display Tickets or Saved Movies
 // ==============================
 
-function showRecords(container, records, resource) {
+const showRecords = (container, records, resource)  => {
     container.replaceChildren();
 
     if (!records.length) {
@@ -300,7 +300,7 @@ function showRecords(container, records, resource) {
 // Get Current User's Records
 // ==============================
 
-async function refreshRecords() {
+const refreshRecords = async () => {
     const account = getAccount();
 
     if (!account) return;
@@ -338,7 +338,7 @@ async function refreshRecords() {
 // Show Account or Guest Page
 // ==============================
 
-function render() {
+const render =() => {
     const account = getAccount();
 
     userSide.hidden = !account;

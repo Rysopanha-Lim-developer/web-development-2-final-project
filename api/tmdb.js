@@ -25,7 +25,7 @@ const tmdb = async (path, params = {}) => {
 }
 
 
-function renderHeroSection(movie) {
+const renderHeroSection = (movie) => {
   if (!movie) return;
 
   currentMovie = movie;
@@ -47,7 +47,7 @@ function renderHeroSection(movie) {
 }
 
 
-async function saveMovie(movie) {
+const saveMovie = async (movie) => {
   const user = requireAccount();
   if (!user) return;
 
@@ -76,7 +76,7 @@ async function saveMovie(movie) {
   }
 }
 
-function openBooking() {
+const openBooking = () => {
   if (!requireAccount()) return;
 
   const dialog = elementSelection("booking-dialog");
@@ -150,7 +150,7 @@ elementSelection("booking-form").addEventListener(
 );
 
 
-function renderMovieRow(movies) {
+const renderMovieRow = (movies) => {
   elementSelection("row").replaceChildren();
   elementSelection("status").textContent = movies.length ? "" : "No movies found. Try another genre.";
 
@@ -176,7 +176,7 @@ function renderMovieRow(movies) {
   });
 }
 
-function renderChips(genres) {
+const renderChips = (genres) => {
   elementSelection("chips").replaceChildren();
   genres.filter((g) => !BLOCKED_GENRES.includes(g.id))
     .forEach((g) => {
