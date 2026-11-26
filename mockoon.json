@@ -1,41 +1,22 @@
 {
-  "uuid": "429ffc2b-dab2-4aea-8412-04f16c0bd8cd",
+  "uuid": "06244fb9-69b3-48e2-9e6a-12871114c662",
   "lastMigration": 33,
-  "name": "Demo API (copy)",
-  "endpointPrefix": "api",
+  "name": "Mockoon",
+  "endpointPrefix": "",
   "latency": 0,
-  "port": 3001,
-  "hostname": "localhost",
+  "port": 3002,
+  "hostname": "",
   "folders": [],
   "routes": [
     {
-      "uuid": "17c32b8b-15c2-449c-b17f-54c3a627a3bb",
-      "type": "crud",
+      "uuid": "df73a0c6-4bb2-4dde-b69a-fa7775ff2847",
+      "type": "http",
       "documentation": "",
-      "method": "",
-      "endpoint": "users",
+      "method": "get",
+      "endpoint": "",
       "responses": [
         {
-          "uuid": "723acbc9-9178-4146-af23-35c302b03620",
-          "body": "{}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "DATABUCKET",
-          "filePath": "",
-          "databucketID": "w6i5",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "e972a1b0-2965-46db-968c-b8d5890bfa2b",
+          "uuid": "bed9ce2b-4d9a-48f1-b69e-0d2f7a33ef27",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -44,68 +25,6 @@
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "cd5e5ba9-07ba-4d9d-a16d-98cb1cf1821b",
-      "type": "crud",
-      "documentation": "",
-      "method": "",
-      "endpoint": "watchlist",
-      "responses": [
-        {
-          "uuid": "53f87c79-0331-468c-a198-a46a5b876d42",
-          "body": "{}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "DATABUCKET",
-          "filePath": "",
-          "databucketID": "ahca",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "056d70e4-7ca0-4739-a197-1375402c8799",
-      "type": "crud",
-      "documentation": "",
-      "method": "",
-      "endpoint": "bookings",
-      "responses": [
-        {
-          "uuid": "87cfc663-25a3-4ca2-99c6-77942aabce5e",
-          "body": "{}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "DATABUCKET",
-          "filePath": "",
-          "databucketID": "4z3l",
           "sendFileAsBody": false,
           "rules": [],
           "rulesOperator": "OR",
@@ -124,15 +43,7 @@
   "rootChildren": [
     {
       "type": "route",
-      "uuid": "17c32b8b-15c2-449c-b17f-54c3a627a3bb"
-    },
-    {
-      "type": "route",
-      "uuid": "cd5e5ba9-07ba-4d9d-a16d-98cb1cf1821b"
-    },
-    {
-      "type": "route",
-      "uuid": "056d70e4-7ca0-4739-a197-1375402c8799"
+      "uuid": "df73a0c6-4bb2-4dde-b69a-fa7775ff2847"
     }
   ],
   "proxyMode": false,
@@ -178,28 +89,6 @@
       "value": ""
     }
   ],
-  "data": [
-    {
-      "uuid": "f8f7e719-321c-4e8e-a109-ae0d98fab581",
-      "id": "w6i5",
-      "name": "Users",
-      "documentation": "",
-      "value": "[]"
-    },
-    {
-      "uuid": "f1dd67b9-d484-477f-a475-91568489e27b",
-      "id": "ahca",
-      "name": "Watchlist",
-      "documentation": "",
-      "value": "[]"
-    },
-    {
-      "uuid": "c9c86e8d-2e23-4055-a731-ce4df2804cc7",
-      "id": "4z3l",
-      "name": "Bookings",
-      "documentation": "",
-      "value": "[]\n"
-    }
-  ],
+  "data": [],
   "callbacks": []
 }
